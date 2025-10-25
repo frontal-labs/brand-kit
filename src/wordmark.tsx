@@ -1,4 +1,4 @@
-import type { JSX, SVGProps } from 'react';
+import type { JSX, SVGProps } from "react";
 
 const FRONTAL_WORDMARK_WIDTH = 77 as const;
 const FRONTAL_WORDMARK_HEIGHT = 16 as const;
@@ -21,56 +21,20 @@ export function FrontalWordmark({
       aria-hidden="true"
       {...props}
     >
-      <path
-        d="M3.83376 2.32062H1.91688V4.22864H3.83376V2.32062Z"
-        fill="currentColor"
-      />
-      <path
-        d="M1.91688 4.22714H0V6.13517H1.91688V4.22714Z"
-        fill="currentColor"
-      />
-      <path
-        d="M5.75065 0.412582H3.83376V2.32061H5.75065V0.412582Z"
-        fill="currentColor"
-      />
-      <path
-        d="M9.58291 0.412582H7.66603V2.32061H9.58291V0.412582Z"
-        fill="currentColor"
-      />
-      <path
-        d="M1.91688 0.412582H0V2.32061H1.91688V0.412582Z"
-        fill="currentColor"
-      />
-      <path
-        d="M5.75065 4.22714H3.83376V6.13517H5.75065V4.22714Z"
-        fill="currentColor"
-      />
-      <path
-        d="M3.83376 6.09198H1.91688V8H3.83376V6.09198Z"
-        fill="currentColor"
-      />
-      <path
-        d="M3.83376 9.90802H1.91688V11.816H3.83376V9.90802Z"
-        fill="currentColor"
-      />
-      <path
-        d="M1.91688 11.8161H0V13.7241H1.91688V11.8161Z"
-        fill="currentColor"
-      />
+      <path d="M3.83376 2.32062H1.91688V4.22864H3.83376V2.32062Z" fill="currentColor" />
+      <path d="M1.91688 4.22714H0V6.13517H1.91688V4.22714Z" fill="currentColor" />
+      <path d="M5.75065 0.412582H3.83376V2.32061H5.75065V0.412582Z" fill="currentColor" />
+      <path d="M9.58291 0.412582H7.66603V2.32061H9.58291V0.412582Z" fill="currentColor" />
+      <path d="M1.91688 0.412582H0V2.32061H1.91688V0.412582Z" fill="currentColor" />
+      <path d="M5.75065 4.22714H3.83376V6.13517H5.75065V4.22714Z" fill="currentColor" />
+      <path d="M3.83376 6.09198H1.91688V8H3.83376V6.09198Z" fill="currentColor" />
+      <path d="M3.83376 9.90802H1.91688V11.816H3.83376V9.90802Z" fill="currentColor" />
+      <path d="M1.91688 11.8161H0V13.7241H1.91688V11.8161Z" fill="currentColor" />
       <path d="M5.75065 8H3.83376V9.90802H5.75065V8Z" fill="currentColor" />
-      <path
-        d="M7.66603 6.09198H5.74915V8H7.66603V6.09198Z"
-        fill="currentColor"
-      />
-      <path
-        d="M7.66603 2.32062H5.74915V4.22864H7.66603V2.32062Z"
-        fill="currentColor"
-      />
+      <path d="M7.66603 6.09198H5.74915V8H7.66603V6.09198Z" fill="currentColor" />
+      <path d="M7.66603 2.32062H5.74915V4.22864H7.66603V2.32062Z" fill="currentColor" />
       <path d="M1.91688 8H0V9.90802H1.91688V8Z" fill="currentColor" />
-      <path
-        d="M3.83376 13.6809H1.91688V15.5889H3.83376V13.6809Z"
-        fill="currentColor"
-      />
+      <path d="M3.83376 13.6809H1.91688V15.5889H3.83376V13.6809Z" fill="currentColor" />
       <path
         d="M11.9667 15.6783V0.644943H21.3955V2.98641H14.512V7.43251H20.77V9.66673H14.512V15.6798H11.9667V15.6783Z"
         fill="currentColor"

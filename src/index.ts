@@ -1,2 +1,2 @@
-export { FrontalWordmark } from './wordmark';
-export { FrontalMark } from './mark';
+export { FrontalWordmark } from "./wordmark";
+export { FrontalMark } from "./mark";
