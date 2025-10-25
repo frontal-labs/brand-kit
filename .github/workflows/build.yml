@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies
         run: |
           pnpm config set store-dir ~/.pnpm-store
-          pnpm install --ignore-workspace
+          pnpm install --frozen-lockfile
 
       - name: Clean previous builds
         run: pnpm run clean
