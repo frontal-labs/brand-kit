@@ -1,0 +1,15 @@
+{
+  "extends": "@frontal/typescript-config/react-library",
+  "compilerOptions": {
+    "baseUrl": "src",
+    "rootDir": "src",
+    "outDir": "dist",
+    "noEmit": false,
+    "paths": {
+      "@frontal/*": ["../../*"],
+      "@frontal/brand-kit/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["node_modules"]
+}
