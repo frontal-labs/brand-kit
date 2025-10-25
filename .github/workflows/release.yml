@@ -29,16 +29,11 @@ jobs:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
 
       - name: Build package
-        run: pnpm run build
+        run: npm run build
 
       - name: Extract version from tag or input
         id: version
@@ -53,7 +48,7 @@ jobs:
 
       - name: Update package.json version
         run: |
-          pnpm version ${{ steps.version.outputs.version }} --no-git-tag-version
+          npm version ${{ steps.version.outputs.version }} --no-git-tag-version
           echo "Updated package.json to version ${{ steps.version.outputs.version }}"
 
       - name: Create GitHub Release
@@ -92,7 +87,7 @@ jobs:
 
       - name: Publish to NPM (if not private)
         if: ${{ !contains(fromJson('false'), 'private') }}
-        run: pnpm publish
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 

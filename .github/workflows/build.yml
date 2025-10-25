@@ -26,7 +26,9 @@ jobs:
           version: 9
 
       - name: Install dependencies
-        run: pnpm install
+        run: |
+          pnpm config set store-dir ~/.pnpm-store
+          pnpm install --ignore-workspace
 
       - name: Clean previous builds
         run: pnpm run clean
