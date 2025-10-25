@@ -20,21 +20,12 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-
-      - name: Install dependencies
+      - name: Install dependencies with npm
         run: |
-          pnpm config set store-dir ~/.pnpm-store
-          pnpm config set auto-install-peers true
-          pnpm config set strict-peer-dependencies false
-          pnpm config set shamefully-hoist true
-          pnpm install --frozen-lockfile --ignore-workspace
-
-      - name: Debug dependencies
-        run: |
+          # Remove any potential workspace interference
+          rm -f pnpm-lock.yaml pnpm-workspace.yaml
+          # Install with npm
+          npm install --no-package-lock --no-audit --no-fund
           echo "Checking node_modules..."
           ls -la node_modules/ || echo "node_modules not found"
           echo "Checking React installation..."
@@ -43,10 +34,10 @@ jobs:
           ls -la node_modules/@types/react/ || echo "@types/react not found"
 
       - name: Clean previous builds
-        run: pnpm run clean
+        run: npm run clean
 
       - name: Build package
-        run: pnpm run build
+        run: npm run build
 
       - name: Verify build output
         run: |
