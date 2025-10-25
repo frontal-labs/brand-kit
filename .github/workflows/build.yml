@@ -24,14 +24,24 @@ jobs:
         run: |
           # Remove any potential workspace interference
           rm -f pnpm-lock.yaml pnpm-workspace.yaml
+          rm -f package-lock.json
           # Install with npm
-          npm install --no-package-lock --no-audit --no-fund
+          npm install --no-package-lock --no-audit --no-fund --verbose
           echo "Checking node_modules..."
           ls -la node_modules/ || echo "node_modules not found"
           echo "Checking React installation..."
           ls -la node_modules/react/ || echo "React not found"
           echo "Checking @types/react installation..."
           ls -la node_modules/@types/react/ || echo "@types/react not found"
+          echo "Checking package.json..."
+          cat package.json | grep -A 5 -B 5 react
+          echo "Checking TypeScript can find React..."
+          npx tsc --noEmit --listFiles | grep react || echo "TypeScript cannot find React types"
+
+      - name: Test TypeScript compilation
+        run: |
+          echo "Testing TypeScript compilation with verbose output..."
+          npx tsc --noEmit --listFiles --verbose 2>&1 | head -20
 
       - name: Clean previous builds
         run: npm run clean
