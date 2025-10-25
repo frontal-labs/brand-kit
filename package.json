@@ -27,8 +27,6 @@
     "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "@frontal/typescript-config": "workspace:*",
-    "@frontal/style-guide": "workspace:*",
     "@types/node": "^20.17.47",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.0",
