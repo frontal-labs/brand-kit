@@ -1,0 +1,11 @@
+# Brand Kit Code Owners
+# https://help.github.com/en/articles/about-code-owners
+
+# All files - Brand Kit team
+* @frontal-labs/frontal
+
+# Brand assets and components - Design team approval required
+/src/ @frontal-labs/design @frontal-labs/frontal
+
+# Documentation - Technical writing team
+*.md @frontal-labs/codebase @gabrielvfonseca

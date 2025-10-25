@@ -1,0 +1,106 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (e.g., v1.0.0)'
+        required: true
+        type: string
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    name: Create Release
+    permissions:
+      contents: write
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build package
+        run: npm run build
+
+      - name: Extract version from tag or input
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            VERSION="${{ github.event.inputs.version }}"
+          else
+            VERSION=${GITHUB_REF#refs/tags/}
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Release version: $VERSION"
+
+      - name: Update package.json version
+        run: |
+          npm version ${{ steps.version.outputs.version }} --no-git-tag-version
+          echo "Updated package.json to version ${{ steps.version.outputs.version }}"
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          release_name: Release ${{ steps.version.outputs.version }}
+          body: |
+            ## What's Changed
+            
+            This release includes the latest updates to the Frontal Brand Kit.
+            
+            ### Files Included
+            - Built package files in `dist/`
+            - Updated package.json with version ${{ steps.version.outputs.version }}
+            - Documentation and license files
+            
+            ### Installation
+            ```bash
+            npm install @frontal/brand-kit@${{ steps.version.outputs.version }}
+            ```
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Assets
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/
+          asset_name: brand-kit-${{ steps.version.outputs.version }}.tgz
+          asset_content_type: application/gzip
+
+      - name: Publish to NPM (if not private)
+        if: ${{ !contains(fromJson('false'), 'private') }}
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create Release Summary
+        run: |
+          echo "## Release Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- **Version**: ${{ steps.version.outputs.version }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Package**: @frontal/brand-kit" >> $GITHUB_STEP_SUMMARY
+          echo "- **Build**: ✅ Successful" >> $GITHUB_STEP_SUMMARY
+          echo "- **Release**: ✅ Created" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ !contains(fromJson('false'), 'private') }}" = "true" ]; then
+            echo "- **NPM**: ✅ Published" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- **NPM**: ⏭️ Skipped (private package)" >> $GITHUB_STEP_SUMMARY
+          fi
