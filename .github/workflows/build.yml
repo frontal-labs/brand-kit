@@ -26,29 +26,18 @@ jobs:
           rm -f pnpm-lock.yaml pnpm-workspace.yaml
           rm -f package-lock.json
           # Install with npm
-          npm install --no-package-lock --no-audit --no-fund --verbose
+          npm install --no-package-lock --no-audit --no-fund
           echo "Checking node_modules..."
           ls -la node_modules/ || echo "node_modules not found"
           echo "Checking React installation..."
           ls -la node_modules/react/ || echo "React not found"
           echo "Checking @types/react installation..."
           ls -la node_modules/@types/react/ || echo "@types/react not found"
-          echo "Checking package.json..."
-          cat package.json | grep -A 5 -B 5 react
-          echo "Checking TypeScript can find React..."
-          npx tsc --noEmit --listFiles | grep react || echo "TypeScript cannot find React types"
 
       - name: Test TypeScript compilation
         run: |
-          echo "Testing TypeScript compilation with verbose output..."
-          npx tsc --noEmit --listFiles --verbose 2>&1 | head -20
-
-      - name: Try alternative installation
-        run: |
-          echo "Trying to install React types explicitly..."
-          npm install react@19.1.0 @types/react@19.1.0 @types/react-dom@19.1.0 --save-dev
-          echo "Checking if React types are now available..."
-          ls -la node_modules/@types/react/ || echo "Still no @types/react"
+          echo "Testing TypeScript compilation..."
+          npx tsc --noEmit --listFiles | grep react || echo "TypeScript cannot find React types"
 
       - name: Clean previous builds
         run: npm run clean

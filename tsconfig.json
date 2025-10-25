@@ -21,8 +21,7 @@
     "baseUrl": ".",
     "rootDir": "src",
     "outDir": "dist",
-    "typeRoots": ["./node_modules/@types"],
-    "types": ["react", "react-dom", "node"]
+    "typeRoots": ["./node_modules/@types"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules", "dist"]
