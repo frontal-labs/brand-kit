@@ -1,11 +1,12 @@
 {
-  "root": false,
   "$schema": "https://biomejs.dev/schemas/2.3.4/schema.json",
-  "extends": ["@frontal/style-guide/biome"],
-  "linter": {
-    "enabled": false
+  "files": {
+    "ignore": ["dist/**"]
   },
   "formatter": {
+    "enabled": true
+  },
+  "linter": {
     "enabled": false
   }
 }
