@@ -1,4 +1,7 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.3.4/schema.json",
-  "extends": ["@frontal/style-guide/biome"]
+  "extends": [
+    "../../../internals/style-guide/config/core/biome.jsonc",
+    "../../../internals/style-guide/config/react/biome.jsonc"
+  ]
 }
