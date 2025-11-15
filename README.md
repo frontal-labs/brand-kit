@@ -141,7 +141,7 @@ Releases are managed by [Changesets](https://github.com/changesets/changesets):
 
 1. Run `pnpm changeset` locally for each logical change and commit the generated markdown file.
 2. Open a PR as usual. The **Release** GitHub Action will open/maintain a release PR that bumps versions and changelogs once changes land on `master`.
-3. When that release PR is merged into `master`, the same workflow runs `pnpm changeset version` and then `pnpm run release`, which tags the repo and creates a GitHub Release (no npm publish).
+3. When that release PR is merged into `master`, the workflow runs `pnpm changeset version` and then `pnpm run release` (which runs `changeset tag`) and automatically creates a GitHub Release without publishing to npm.
 
 > ℹ️ All releases are tracked via git tags/GitHub Releases only. Nothing is pushed to npm.
 
@@ -163,7 +163,7 @@ Please read [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on contributing 
 2. Merge the automated **Release** PR that the workflow opens (it will contain the version bumps).
 3. The merge triggers the Release workflow, which:
    - runs `pnpm changeset version` to apply the version/changelog updates,
-   - runs `pnpm run release` to tag and create a GitHub Release (no npm publish).
+   - runs `pnpm run release` to tag the commit and have the action create a GitHub Release entry (no npm publish).
 
 ## Repository Structure
 
