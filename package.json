@@ -1,7 +1,7 @@
 {
 	"name": "@frontal/brand-kit",
 	"description": "Frontal Brand Kit",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"private": true,
 	"type": "module",
 	"main": "./dist/index.js",
@@ -22,7 +22,12 @@
 		"format": "biome format --write",
 		"release": "changeset tag && changeset github release"
 	},
-	"files": ["dist", "README.md", "LICENSE.md", "CONTRIBUTING.md"],
+	"files": [
+		"dist",
+		"README.md",
+		"LICENSE.md",
+		"CONTRIBUTING.md"
+	],
 	"dependencies": {
 		"next": "15.5.3",
 		"react": "19.1.0",
@@ -44,5 +49,11 @@
 		"type": "git",
 		"url": "https://github.com/frontal-labs/brand-kit"
 	},
-	"keywords": ["brand", "assets", "design", "system", "ui"]
+	"keywords": [
+		"brand",
+		"assets",
+		"design",
+		"system",
+		"ui"
+	]
 }

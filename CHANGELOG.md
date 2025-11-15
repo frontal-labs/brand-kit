@@ -1,5 +1,12 @@
 # @frontal/brand-kit
 
+## 0.0.4
+
+### Patch Changes
+
+- Adopt the shared setup-node composite action across CI and release workflows so
+  GitHub Actions installs pnpm via Corepack and avoids conflicting version pins.
+
 ## 0.0.3
 
 ### Patch Changes
