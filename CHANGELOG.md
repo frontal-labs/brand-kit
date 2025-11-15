@@ -1,5 +1,11 @@
 # @frontal/brand-kit
 
+## 0.0.3
+
+### Patch Changes
+
+- [`1276d1e`](https://github.com/frontal-labs/brand-kit/commit/1276d1e3894ac031837170ade12912b08a1ce59d) Thanks [@gabrielvfonseca](https://github.com/gabrielvfonseca)! - Ensure the release script only tags commits so the workflow can manage GitHub Releases.
+
 ## 0.0.2
 
 ### Patch Changes

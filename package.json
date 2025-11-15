@@ -1,7 +1,7 @@
 {
   "name": "@frontal/brand-kit",
   "description": "Frontal Brand Kit",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "type": "module",
   "main": "./dist/index.js",
@@ -17,10 +17,10 @@
     "clean": "git clean -xdf -- node_modules .next .turbo .cache dist",
     "changeset": "changeset",
     "type-check": "tsc --noEmit --emitDeclarationOnly false",
-		"lint": "biome check",
-		"lint:fix": "biome check --write",
-		"format": "biome format --write",
-		"release": "changeset tag"
+    "lint": "biome check",
+    "lint:fix": "biome check --write",
+    "format": "biome format --write",
+    "release": "changeset tag"
   },
   "files": [
     "dist",
