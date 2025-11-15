@@ -19,13 +19,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Node.js Environment
+        uses: ./.github/actions/setup-node
         with:
-          node-version: 20
-
-      - name: Enable pnpm
-        run: corepack enable pnpm
+          node-version: '20'
+          cache-key: 'release'
 
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
