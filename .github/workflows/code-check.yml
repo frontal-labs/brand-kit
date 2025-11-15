@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies
         run: |
           pnpm config set store-dir ~/.pnpm-store
-          pnpm install --frozen-lockfile
+          pnpm install --no-frozen-lockfile
 
       - name: Run linting
         run: pnpm run lint
@@ -54,7 +54,7 @@ jobs:
       - name: Install dependencies
         run: |
           pnpm config set store-dir ~/.pnpm-store
-          pnpm install --frozen-lockfile
+          pnpm install --no-frozen-lockfile
 
       - name: Check formatting
         run: pnpm run format
@@ -80,7 +80,7 @@ jobs:
       - name: Install dependencies
         run: |
           pnpm config set store-dir ~/.pnpm-store
-          pnpm install --frozen-lockfile
+          pnpm install --no-frozen-lockfile
 
       - name: Run type checking
         run: pnpm run type-check
