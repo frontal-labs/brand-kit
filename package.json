@@ -20,7 +20,7 @@
 		"lint": "biome check",
 		"lint:fix": "biome check --write",
 		"format": "biome format --write",
-		"release": "changeset tag"
+		"release": "changeset tag && changeset github release"
 	},
 	"files": ["dist", "README.md", "LICENSE.md", "CONTRIBUTING.md"],
 	"dependencies": {
