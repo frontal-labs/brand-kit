@@ -1,0 +1,41 @@
+name: Setup Node.js with pnpm
+description: Configure Node.js via actions/setup-node and activate pnpm through Corepack.
+inputs:
+  node-version:
+    description: Version of Node.js to install.
+    required: true
+  cache-key:
+    description: Optional suffix for the pnpm cache key.
+    required: false
+    default: default
+runs:
+  using: composite
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        check-latest: true
+
+    - name: Enable pnpm via Corepack
+      shell: bash
+      run: |
+        set -euo pipefail
+        corepack enable pnpm
+        mkdir -p "$HOME/.pnpm-store"
+        pnpm config set store-dir "$HOME/.pnpm-store"
+
+    - name: Cache pnpm store
+      uses: actions/cache@v4
+      with:
+        path: ~/.pnpm-store
+        key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}-${{ inputs.cache-key }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-
+
+    - name: Show tool versions
+      shell: bash
+      run: |
+        node -v
+        pnpm -v
+
