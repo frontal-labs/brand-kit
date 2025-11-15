@@ -135,24 +135,15 @@ pnpm format
 
 This package is private and proprietary to Frontal Labs. See [LICENSE.md](./LICENSE.md) for details.
 
-## CI/CD Workflows
+## Release Workflow
 
-This package includes automated GitHub Actions workflows:
+Releases are managed by [Changesets](https://github.com/changesets/changesets):
 
-### Code Check (`code-check.yml`)
-- **Triggers**: Push/PR to main, master, develop branches
-- **Jobs**: Linting, formatting, type checking, and build verification
-- **Purpose**: Ensures code quality on every change
+1. Run `pnpm changeset` locally for each logical change and commit the generated markdown file.
+2. Open a PR as usual. The **Release** GitHub Action will open/maintain a release PR that bumps versions and changelogs once changes land on `master`.
+3. When that release PR is merged into `master`, the same workflow runs `pnpm changeset version` and then `pnpm run release`, which tags the repo and creates a GitHub Release (no npm publish).
 
-### Build (`build.yml`)
-- **Triggers**: Push to main/master, version tags (v*), manual dispatch
-- **Jobs**: Clean builds, package building, artifact upload
-- **Purpose**: Creates distributable package builds
-
-### Release (`release.yml`)
-- **Triggers**: Version tags (v*), manual dispatch with version input
-- **Jobs**: Version extraction, GitHub release creation, NPM publishing
-- **Purpose**: Automated package releases
+> ℹ️ All releases are tracked via git tags/GitHub Releases only. Nothing is pushed to npm.
 
 ## Contributing
 
@@ -168,12 +159,11 @@ Please read [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on contributing 
 
 ### Release Process
 
-1. **Create a version tag**: `git tag v1.0.0`
-2. **Push the tag**: `git push origin v1.0.0`
-3. **GitHub Actions** will automatically:
-   - Build the package
-   - Create a GitHub release
-   - Publish to NPM (if not private)
+1. Run `pnpm changeset` for each change that should appear in the changelog.
+2. Merge the automated **Release** PR that the workflow opens (it will contain the version bumps).
+3. The merge triggers the Release workflow, which:
+   - runs `pnpm changeset version` to apply the version/changelog updates,
+   - runs `pnpm run release` to tag and create a GitHub Release (no npm publish).
 
 ## Repository Structure
 
